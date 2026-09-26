@@ -1,4 +1,5 @@
 from Student_functions import *
+print("Loading student data...")
 Load_data()
 
 while True:
@@ -23,10 +24,13 @@ while True:
             View_students()
             
         elif Choice == 3:
-            Search_student()
+            Search_position = Search_student()
+            if Search_position is not None:
+                Print_student(Students[Search_position])
             
         elif Choice == 4:
             Update_student()
+            Save_data()
             
         elif Choice == 5:
             Delete_student()
@@ -42,7 +46,9 @@ while True:
             Save_data()
             
         elif Choice == 0:
+            print("Saving student data...")
             Save_data()
+            print("Data saved successfully.")
             break
         
         else:
