@@ -148,6 +148,9 @@ def Update_student():
     print("You must search for the student by ID or Name:\n")
 
     Search_position = Search_student()
+    
+    if Search_position is None:
+        return
 
     Student = Students[Search_position]
 
