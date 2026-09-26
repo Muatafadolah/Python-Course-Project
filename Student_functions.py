@@ -1,23 +1,26 @@
-##Python file to define the functions we need.
+## Python file to define the functions that program need.
 
-##Subjects for the students.
+## Subjects for the students.
 Students = []
 Subjects = ("Python","Math","English")
 
-##Function to calcualte Average any time.
+## Function to calcualte Average any time.
 def Calculate_Average(Student):
+    
     average = sum(Student["Grades"].values()) / len(Student["Grades"])
     Student["Average"] = average
 
-##Function to determine Student status any time.
+## Function to determine Student status any time.
 def Calculate_Status(Student):
+    
         if Student["Average"] >= 60:
             Student["Status"] = "Passed"
         else:
             Student["Status"] = "Failed"
 
-##Function that determine Classification of the student.
+## Function that determine Classification of the student.
 def Calculate_Classification(Student):
+    
     if Student["Average"] >= 90:
         Student["Classification"] = "Excellent"
     elif Student["Average"] >= 80:
@@ -29,11 +32,12 @@ def Calculate_Classification(Student):
     else:
         Student["Classification"] = "Fail"
 
-##Function to Add new Student.
+## Function to Add new Student.
 def Add_Student():
+    
     print("You are in add new student session, Enter all new student data.")
 
-##Define a dectionry has all data needed.
+## Define a dectionry has all data needed.
     Student = {
     "ID": "",
     "Name": "",
@@ -46,7 +50,7 @@ def Add_Student():
     "Status": "",
     "Classification": ""
 }
-##Add Student ID and check if ID is unique.
+## Add Student ID and check if ID is unique.
     while True:
         ID = input("Enter Student ID: ").strip().replace(" ","")
         if ID == "":
@@ -59,7 +63,7 @@ def Add_Student():
 
     Student["ID"] = ID
     
-    ##Add Student's name.
+    ## Add Student's name.
     while True:
         Student["Name"] = input("Enter Student Name: ").strip()
         if Student["Name"] == "":
@@ -68,7 +72,7 @@ def Add_Student():
             break
         
     
-    ##Add valled Subjects Marks.
+    ## Add valled Subjects Marks.
     for subject in Subjects:
         while True:
             try:
@@ -84,10 +88,13 @@ def Add_Student():
     Calculate_Average(Student)
     Calculate_Status(Student)
     Calculate_Classification(Student)
+    
     Students.append(Student)
     
 def ID_search():
+    
     while True:
+        
         Search_ID = input("Enter student ID: ").strip().replace(" ","")
         for position ,student in enumerate(Students):
             if student["ID"] == Search_ID:
@@ -97,16 +104,18 @@ def ID_search():
         else:
             print("Student not found.")
             
-##Function that search for a student by ID or Name.
+## Function that search for a student by ID or Name.
 def Search_student():
+    
     while True:
-        Search_position = 0
+        
         print("Now you are in search session.\n")
         print("What method you need to search?")
         print("1.Student ID.")
         print("2.Student name.")
         print("3.Back.")
         try:
+            
             Search_method = int(input("Enter a number (1 or 2 or 3): "))
             if Search_method == 1:
                 
@@ -132,7 +141,7 @@ def Search_student():
     return Search_position
         
                 
-##Functoin that update student marks.
+## Functoin that update student marks.
 def Update_student():
 
     print("You are in update student grades session")
@@ -143,6 +152,7 @@ def Update_student():
     Student = Students[Search_position]
 
     while True:
+        
         print("Choose what grade you need to update:")
         print("1.Python")
         print("2.Math")
@@ -182,17 +192,18 @@ def Update_student():
             print("Invalid numeric input.")
             
                 
-            
+## Funcion that display student acadimic report.         
 def Display_student_report():
+    
     print("To display student report you must search for the student.\n")
     Search_position = Search_student()
     if Search_position is None:
         return
     else:
         Student = Students[Search_position]
-        print("=================================")
-        print("STUDENT REPORT")
-        print("=================================")
+        print("\n=================================")
+        print(" STUDENT REPORT ")
+        print("=================================\n")
         print(f"Student ID:{Student["ID"]}")
         print(f"Name:{Student["Name"]}")
         for subject in Subjects: 
@@ -202,7 +213,7 @@ def Display_student_report():
         print(f"Classification:{Student["Classification"]}")
 
 def Delete_student():
-    print("You are in delete student session, you must search for the student first.")
+    print("You are in delete student session, you must search for the student first.\n")
     Search_position = ID_search()
     if Search_position is None:
         return
@@ -222,8 +233,9 @@ def Delete_student():
                 print("Wrong answer.")
             
         
-##Function that display class statistics.
+## Function that display class statistics.
 def Display_statistics():
+    
     Subject_average = {}
     Highest_grade = {}
     Count_p = 0
@@ -273,7 +285,7 @@ def Display_statistics():
     Class_average = Total_averages / len(Students)
 
     ##Output.
-    print("===== CLASS STATISTICS =====")
+    print("\n===== CLASS STATISTICS =====\n")
     print(f"Number of Students: {len(Students)}")
     print(f"Class Average: {Class_average:.2f}")
     print(f"Highest Average: {Students[Highest_position]['Name']} - {Max_average:.2f}")
@@ -320,7 +332,9 @@ def Sort_students():
         except ValueError:
             print("Invalid numeric input.")
 
+## Function that print students data by sorting by name or average.
 def View_students():
+    
     if len(Students) == 0:
         print("There are no students in the class. Please add students to continue.")
         return
@@ -330,9 +344,9 @@ def View_students():
         return
     
     if Sort_method == 1:
-        print("===== STUDENTS SORTED BY NAME =====")
+        print("\n===== STUDENTS SORTED BY NAME =====")
     elif Sort_method == 2:
-        print("===== STUDENTS SORTED BY AVERAGE =====")
+        print("\n===== STUDENTS SORTED BY AVERAGE =====")
 
     for Student in Sorted_students:
         print(f"ID: {Student["ID"]}")
@@ -340,9 +354,11 @@ def View_students():
         print(f"Average: {Student["Average"]:.2f}")
         print(f"Status: {Student["Status"]}")
         print(f"Classification: {Student["Classification"]}")
-        print("=================================")
+        print("=================================\n")
 
+## Function that saves the data on file "Students.txt".
 def Save_data():
+    
     try:
         with open("Students.txt","w") as File:
             for Student in Students:
@@ -353,11 +369,14 @@ def Save_data():
     except FileNotFoundError:
         print("File does not exist. ")
         
+## Function that load the data saved from "Students.txt".
 def Load_data():
+    
     try:
         with open("Students.txt","r") as File:
             for Line in File:
                 Data = Line.strip().split(",")
+                
                 Student = {
                     "ID": Data[0],
                     "Name": Data[1],
@@ -370,6 +389,7 @@ def Load_data():
                     "Status": "",
                     "Classification": ""
                 }
+                
                 Calculate_Average(Student)
                 Calculate_Status(Student)
                 Calculate_Classification(Student)
