@@ -109,7 +109,7 @@ def ID_search():
         Search_ID = input("Enter student ID: ").strip().replace(" ","")
         for position ,student in enumerate(Students):
             if student["ID"] == Search_ID:
-                print("Student Found.\n")
+                print("Student Found.")
                 Search_position = position
                 return Search_position
         else:
