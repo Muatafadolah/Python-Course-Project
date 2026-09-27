@@ -1,9 +1,11 @@
 from Student_functions import *
+
 print("Loading student data...")
 Load_data()
 
 while True:
-    print("=====Student Academic Management System=====\n")
+    
+    print("\n=====Student Academic Management System=====\n")
     print("1.Add Student")
     print("2.View All Students")
     print("3.Search Student")
@@ -12,8 +14,10 @@ while True:
     print("6.Student Report")
     print("7.Class Statistics")
     print("8.Save Data")
-    print("0.Exit")
+    print("0.Exit\n")
+    
     try:
+        
         Choice = int(input("Enter your choice: "))
         
         if Choice == 1:
@@ -53,5 +57,6 @@ while True:
         
         else:
             print("Enter a number between 0 and 8.")
+            
     except ValueError:     
         print("Invalid numeric input.")
