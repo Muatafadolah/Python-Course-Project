@@ -103,7 +103,7 @@ def Add_Student():
     Students.append(Student)
     print("Student added successfuly.\n")
   
-# Function thast searches for a student by ID.
+# Function that searches for a student by ID.
 def ID_search():
         
         Search_ID = input("Enter student ID: ").strip().replace(" ","")
@@ -116,7 +116,7 @@ def ID_search():
             print("Student not found.\n")
             return None
 
-
+# Function that searches for a student by name.
 def Name_search():
     
     Search_name = input("Enter student name: ").strip().lower()
@@ -129,7 +129,7 @@ def Name_search():
         
     else:
         print("Student not found.")
-        Search_position = None
+        return None
         
 
 # Function that prints student data, used with Search_student.
